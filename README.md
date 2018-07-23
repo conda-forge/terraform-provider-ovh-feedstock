@@ -14,14 +14,16 @@ Summary: The Terraform OVH provider
 Current build status
 ====================
 
-Linux: [![Circle CI](https://circleci.com/gh/conda-forge/terraform-provider-ovh-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/terraform-provider-ovh-feedstock)
-OSX: [![TravisCI](https://travis-ci.org/conda-forge/terraform-provider-ovh-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/terraform-provider-ovh-feedstock)
-Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/conda-forge/terraform-provider-ovh-feedstock?svg=True)](https://ci.appveyor.com/project/conda-forge/terraform-provider-ovh-feedstock/branch/master)
+[![Linux](https://img.shields.io/circleci/project/github/conda-forge/terraform-provider-ovh-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/terraform-provider-ovh-feedstock)
+[![OSX](https://img.shields.io/travis/conda-forge/terraform-provider-ovh-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/terraform-provider-ovh-feedstock)
+[![Windows](https://img.shields.io/appveyor/ci/conda-forge/terraform-provider-ovh-feedstock/master.svg?label=Windows)](https://ci.appveyor.com/project/conda-forge/terraform-provider-ovh-feedstock/branch/master)
 
 Current release info
 ====================
-Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/terraform-provider-ovh/badges/version.svg)](https://anaconda.org/conda-forge/terraform-provider-ovh)
-Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/terraform-provider-ovh/badges/downloads.svg)](https://anaconda.org/conda-forge/terraform-provider-ovh)
+
+| Name | Downloads | Version | Platforms |
+| --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-terraform--provider--ovh-green.svg)](https://anaconda.org/conda-forge/terraform-provider-ovh) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/terraform-provider-ovh.svg)](https://anaconda.org/conda-forge/terraform-provider-ovh) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/terraform-provider-ovh.svg)](https://anaconda.org/conda-forge/terraform-provider-ovh) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/terraform-provider-ovh.svg)](https://anaconda.org/conda-forge/terraform-provider-ovh) |
 
 Installing terraform-provider-ovh
 =================================
