@@ -1,2 +1,4 @@
-go_compiler:
-- go
+channel_sources:
+- conda-forge,defaults
+channel_targets:
+- conda-forge main
