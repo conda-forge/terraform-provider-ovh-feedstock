@@ -1,8 +1,11 @@
 {% set provider = "OVH" %}
+{% set goname = "github.com/terraform-providers/terraform-provider-"+provider.lower() %}
 {% set version = "0.2.0" %}
 
-{% set name = "terraform-provider-" + provider.lower() %}
-{% set x4_plugin = name + '_v' + version + "_x4" %}
+{% set name = goname.split('/')[-1] %}
+{% set pkg_src = ('src/'+goname).replace("/",os.sep) %}
+
+{% set x4_plugin = name + '_v' + version + "_x4" + (".exe" if win else "")%}
 
 {% set sha256 = "a2e85fe36f967ee6019d4783816b720fbbe290122ccfe10b76c13a44502ebe29" %}
 {% set sha256_win64 = "452446241a6c3595367f842cd65fc85c45019afc05509be5d91163dedbc22fe1" %}
@@ -12,29 +15,36 @@ package:
   version: {{ version }}
 
 source:
-  - folder: src/github.com/terraform-providers/{{ name|lower }}
-    url: https://github.com/terraform-providers/{{ name }}/archive/v{{ version }}.tar.gz  # [not win]
-    sha256: {{ sha256 }}  # [not win]
+  - folder:  {{ pkg_src }}
+    url: https://{{ goname }}/archive/v{{ version }}.tar.gz
+    sha256: {{ sha256 }}
 
-    url: https://releases.hashicorp.com/{{ name }}/{{ version }}/{{ name }}_{{ version }}_windows_amd64.zip  # [win64]
-    sha256: {{ sha256_win64 }}  # [win64]
 
 build:
   number: 1001
   script:
-    - XCOPY src\github.com\terraform-providers\{{ name|lower }}\{{ x4_plugin }}.exe %LIBRARY_BIN%  # [win]
+    - pushd {{ pkg_src }}
+    - go build -v -o $GOBIN/{{ x4_plugin }} .  # [unix]
+    - go build -v -o %GOBIN%\{{ x4_plugin }} .  # [win]
 
 requirements:
   build:
-    - {{ compiler('go') }}  # [not win]
-    - make  # [not win]
+    - {{ compiler('go') }} >=1.11.3
   run:
-    - terraform >=0.10
+    - terraform >=0.10  # [unix]
+    - terraform >=0.11.11  # [win]
 
 test:
+  requires:         # [win]
+    - m2-bash       # [win]
+    - m2-coreutils  # [win]
+
   commands:
-    - echo 'provider "{{ provider|lower }}" { version="{{ version }}" }' > init.tf  # [not win]
-    - test $(terraform init | grep -c 'Downloading') = 0  # [not win]
+    - bash -euf -c "echo 'provider \"{{ provider|lower }}\" { version=\"{{ version }}\" }' > init.tf"
+    - terraform init
+    # Tests that no plugins were downloaded
+    - test -f .terraform/plugins/{{ goos }}_{{ goarch }}/lock.json
+    - test ! -f .terraform/plugins/{{ goos }}_{{ goarch }}/{{ x4_plugin }}
 
 about:
   home: https://www.terraform.io
