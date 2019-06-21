@@ -1,5 +1,3 @@
-build_number_decrement:
-- '0'
 channel_sources:
 - conda-forge,defaults
 channel_targets:
@@ -12,8 +10,3 @@ goarch:
 - amd64
 goos:
 - linux
-zip_keys:
-- - channel_sources
-  - channel_targets
-  - docker_image
-  - build_number_decrement
