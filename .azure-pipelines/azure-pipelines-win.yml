@@ -81,7 +81,7 @@ jobs:
 
     # Special cased version setting some more things!
     - script: |
-        call activate base
+        call activate base>>>>>>> master
         conda.exe build "recipe" -m .ci_support\%CONFIG%.yaml
       displayName: Build recipe (vs2008)
       env:
